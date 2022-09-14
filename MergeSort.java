@@ -14,8 +14,13 @@ public class MergeSort {
       }
    
    }
+   
+   public static void mergesort(int[] A) {
+      mergesort(A, 0, (A.length - 1)); 
+      
+    }
 
-   public static void mergesort(int[] A, int left, int right) {
+   private static void mergesort(int[] A, int left, int right) {
    
      if(left >= right) {
       return; 
@@ -25,39 +30,34 @@ public class MergeSort {
      
      //TEST: print mid
      System.out.println("mid = " + mid); 
-     
-     int[] leftArray = new int[mid - left]; 
-     int[] rightArray = new int[right - (mid + 1)];
-     
-     for(int i = 0; i < mid; i++) {
-      leftArray[i] = A[i];
-     }
-     
-     for(int j = mid; j < right; j++) {
-      rightArray[j] = A[j]; 
-     }
-     
-     
-     //TEST: did the arrays split properly? 
-      System.out.println("Left Array: "); 
-      for(int i = 0; i < leftArray.length; i++) {
-         System.out.print(leftArray[i] + ", "); 
-      }
-      System.out.println(); 
-      
         
-   
           
      mergesort(A, left, mid); 
      mergesort(A, (mid + 1), right); 
      
-     //merge(A, left, mid, right); 
+     merge(A, left, mid, right); 
    
    }
    
    
    private static void merge(int[] A, int left, int mid, int right) {
+      int leftSize = mid - (left + 1); 
+      int rightSize = right - mid; 
    
+      //TEST: print left and right sizes
+      System.out.println("leftSize = " + leftSize);
+      System.out.println("rightSize = " + rightSize); 
+      
+      int[] leftArray = new int[leftSize]; 
+      int[] rightArray = new int[rightSize]; 
+      
+      //TEST: did the arrays size properly
+      System.out.println("leftArray size = " + leftArray.length);
+      System.out.println("rightArray size = " + rightArray.length);
+      
+      for(int i = 0; i < (leftSize - 1); i++) {
+         
+      }
    }
 
 
@@ -74,7 +74,7 @@ public class MergeSort {
          System.out.println(mergeSortMe[i] + ", ");
       }
       
-      mergesort(mergeSortMe, 0, (mergeSortMe.length - 1)); 
+      mergesort(mergeSortMe); 
          
    }
    
