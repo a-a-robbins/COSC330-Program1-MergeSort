@@ -10,7 +10,8 @@ public class MergeSort {
    public static void generateArray(int[] numbers) {
          
       for(int i = 0; i < numbers.length; i++) {
-         numbers[i] = rand.nextInt(1000); 
+
+         numbers[i] = rand.nextInt(); 
       }
    
    }
@@ -95,7 +96,7 @@ public class MergeSort {
         System.out.println("Size: " + size + "\tTime: " + time); 
 
       }
-                
+               
    }
    
 }
