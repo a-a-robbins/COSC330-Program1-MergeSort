@@ -10,7 +10,7 @@ public class MergeSort {
    public static void generateArray(int[] numbers) {
          
       for(int i = 0; i < numbers.length; i++) {
-         numbers[i] = rand.nextInt(1000); 
+         numbers[i] = rand.nextInt(); 
       }
    
    }
@@ -74,7 +74,6 @@ public class MergeSort {
          j = j +1;
          k = k +1;
       }
-
    }
 
 
@@ -84,17 +83,25 @@ public class MergeSort {
              
       int[] mergeSortMe = new int[size]; 
       generateArray(mergeSortMe);
-      mergesort(mergeSortMe);
-      //TEST print our array to be merge-sorted
-      System.out.println("TEST: print array mergeSortMe");
+      
+      //TEST: unsorted array
+      System.out.println("Unsorted array: "); 
       for(int i = 0; i < mergeSortMe.length; i++) {
-         System.out.print(mergeSortMe[i] + ", ");
+         System.out.print(mergeSortMe[i] + ", "); 
       }
       System.out.println(); 
       System.out.println(); 
       //END TEST
       
-      mergesort(mergeSortMe); 
+      mergesort(mergeSortMe);
+      
+      //TEST: sorted array
+      System.out.println("Sorted array: ");
+      for(int i = 0; i < mergeSortMe.length; i++) {
+         System.out.print(mergeSortMe[i] + ", ");
+      }
+      System.out.println(); 
+      //END TEST
          
    }
    
