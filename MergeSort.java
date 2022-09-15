@@ -10,134 +10,71 @@ public class MergeSort {
    public static void generateArray(int[] numbers) {
          
       for(int i = 0; i < numbers.length; i++) {
-         numbers[i] = rand.nextInt(100); 
+         numbers[i] = rand.nextInt(1000); 
       }
    
    }
-   
-   public static void mergesort(int[] A) {
-      //TEST: what array was passed
-      System.out.println("The array passed to mergesort(int[] A) is: "); 
-      for(int i = 0; i < A.length; i++) {
-         System.out.print(A[i] + ", ");
-      }
-      System.out.println(); 
-      System.out.println();
-      //END TEST
-      
-      mergesort(A, 0, A.length); 
-      
-      System.out.println("Sorted Array: "); 
-      for(int i = 0; i < A.length; i++) {
-         System.out.print(A[i] + ", "); 
-      }
-      System.out.println();
-      
-    }
 
-   private static void mergesort(int[] A, int left, int right) {
-   
-     if(left >= right) {
-      return; 
-     }
-     
-     int mid = (left + right) / 2; 
-     
-     //TEST: print mid, left, right
-     System.out.println("mid = " + mid + ", left = " + left + ", right = " + right);
-     System.out.println();
-     //END TEST
-        
-          
-     mergesort(A, left, mid); 
-     mergesort(A, mid + 1, right); 
-     
-     merge(A, left, mid, right); 
-   
+   private static void sort(int[] A, int left, int right) {
+      if (left >= right) {
+         return;
+      }
+      
+      int mid = (left + right)/ 2;
+
+      sort(A, left, mid);
+      sort(A,mid + 1, right);
+      merge(A, left, mid, right);
+   }
+
+   public static void mergesort(int[] A) {
+      sort(A, 0, A.length -1);
    }
    
    
-   private static void merge(int[] A, int left, int mid, int right) {
-      //TEST: what is being passed in
-      System.out.println("At merge() left = " + left + ", right = " + right); 
-      System.out.println(); 
+   private static void merge(int[] A, int left, int mid, int right){
       
-      System.out.print("At merge() array A: "); 
-      for(int i = 0; i < A.length; i++) {
-         System.out.print(A[i] + ", ");
+      int leftLength = mid - left +1;
+      int rightLength = right - mid;
+
+      int[] leftArray = new int [leftLength];
+      int[] rightArray = new int[rightLength];
+
+      for (int i = 0; i <= leftLength -1; i ++) {
+         leftArray[i] = A[left + i];
       }
-      System.out.println(); 
-      System.out.println();
-      //END TEST
-      
-      int leftSize = mid - left + 1; 
-      int rightSize = right - mid; 
-   
-      //TEST: print left and right sizes
-      System.out.println("leftSize = " + leftSize);
-      System.out.println("rightSize = " + rightSize); 
-      System.out.println(); 
-      //END TEST
-      
-      int[] leftArray = new int[leftSize]; 
-      int[] rightArray = new int[rightSize]; 
-      
-      //TEST: did the arrays size properly
-      System.out.println("leftArray size = " + leftArray.length);
-      System.out.println("rightArray size = " + rightArray.length);
-      System.out.println();
-      //END TEST
-      
-      for(int i = 0; i < (leftSize - 1); i++) {
-         leftArray[i] = A[left + i]; 
+
+      for (int j = 0; j <= rightLength - 1; j++){
+         rightArray[j] = A[mid + j +1];
       }
-      
-      for(int j = 0; j < (rightSize - 1); j++) {
-         rightArray[j] = A[mid + j + 1]; 
-      }
-      
-      //TEST: what do our arrays look like
-      System.out.println("leftArray: "); 
-      for(int i = 0; i < leftArray.length; i++) {
-         System.out.print(leftArray[i] + ", "); 
-      }
-      System.out.println(); 
-      
-      System.out.println("rightArray: ");
-      for(int i = 0; i < rightArray.length; i++) {
-         System.out.print(rightArray[i] + ", ");
-      }
-      System.out.println(); 
-      System.out.println(); 
-      //END TEST
-      
-      int i = 0; 
-      int j = 0; 
-      int k = left; 
-      
-      while(i < leftSize && i < rightSize) {
-         if(leftArray[i] <= rightArray[j]) {
-            A[k] = leftArray[i]; 
-            i = i + 1; 
+
+      int i = 0;
+      int j = 0;
+      int k = left;
+
+      while (i < leftLength && j < rightLength){
+         if (leftArray[i] <= rightArray[j]){
+            A[k] = leftArray[i];
+            i = i +1;
+         }else {
+            A[k] = rightArray[j];
+            j = j +1;
          }
-         else {
-            A[k] = rightArray[j]; 
-            j = j + 1; 
-         }
+         k = k + 1;
       }
-      
-      while(i < leftSize) {
-         A[k] = leftArray[i]; 
-         i += 1; 
-         k += 1; 
+
+      while (i < leftLength) {
+         A[k] = leftArray[i];
+         i = i + 1;
+         k = k + 1;
       }
-      
-      while(j < rightSize) {
-         A[k] = rightArray[j]; 
-         j += 1; 
-         k += 1;
+
+      while(j < rightLength) {
+         A[k] = rightArray[j];
+         j = j +1;
+         k = k +1;
       }
-      
+
    }
 
 
@@ -147,7 +84,7 @@ public class MergeSort {
              
       int[] mergeSortMe = new int[size]; 
       generateArray(mergeSortMe);
-      
+      mergesort(mergeSortMe);
       //TEST print our array to be merge-sorted
       System.out.println("TEST: print array mergeSortMe");
       for(int i = 0; i < mergeSortMe.length; i++) {
@@ -162,6 +99,3 @@ public class MergeSort {
    }
    
 }
-
-
-
