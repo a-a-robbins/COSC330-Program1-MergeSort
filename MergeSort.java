@@ -74,6 +74,7 @@ public class MergeSort {
          j = j +1;
          k = k +1;
       }
+
    }
 
 
@@ -89,6 +90,11 @@ public class MergeSort {
       for(int i = 0; i < mergeSortMe.length; i++) {
          System.out.print(mergeSortMe[i] + ", ");
       }
+      System.out.println(); 
+      System.out.println(); 
+      //END TEST
+      
+      mergesort(mergeSortMe); 
          
    }
    
